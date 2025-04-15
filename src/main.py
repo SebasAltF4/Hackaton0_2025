@@ -51,5 +51,20 @@ def calculate(expression: str) -> float:
             return result
         else:
             return parse_number()
-
-
+                
+    def parse_term() -> float:
+        nonlocal i
+        result = parse_factor()
+        while True:
+            skip_whitespace()
+            if i < len(s) and s[i] in "*/":
+                op = s[i]
+                i += 1
+                right = parse_factor()
+                if op == "*":
+                    result *= right
+                else:
+                    result /= right
+            else:
+                break
+        return result
