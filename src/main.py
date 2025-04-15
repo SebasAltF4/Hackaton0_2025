@@ -68,3 +68,26 @@ def calculate(expression: str) -> float:
             else:
                 break
         return result
+    
+    def parse_expression() -> float:
+        nonlocal i
+        result = parse_term()
+        while True:
+            skip_whitespace()
+            if i < len(s) and s[i] in "+-":
+                op = s[i]
+                i += 1
+                right = parse_term()
+                if op == "+":
+                    result += right
+                else:
+                    result -= right
+            else:
+                break
+        return result
+
+    result = parse_expression()
+    skip_whitespace()
+    if i != len(s):
+        raise ValueError("Entrada inválida: quedan caracteres sin procesar.")
+    return result
