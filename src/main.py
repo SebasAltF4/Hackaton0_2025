@@ -91,3 +91,25 @@ def calculate(expression: str) -> float:
     if i != len(s):
         raise ValueError("Entrada inválida: quedan caracteres sin procesar.")
     return result
+
+if _name_ == "_main_":
+    print("Calculadora en línea de comandos")
+    print('Ingrese una operación completa (ejemplo: 2 + 2) y presione Enter para calcular.')
+    print("Si ingresa la letra 'c' se borrará la operación actual.")
+    print("Escriba 'salir' para terminar el programa.\n")
+    
+    while True:
+        entrada = input("Operación: ").strip()
+        # Si se ingresa "salir", se finaliza la calculadora.
+        if entrada.lower() == "salir":
+            print("Saliendo de la calculadora. ¡Hasta luego!")
+            break
+        # Si se ingresa "c", se borra la operación actual y se vuelve a pedir entrada.
+        if entrada.lower() == "c":
+            print("Operación borrada.\n")
+            continue
+        try:
+            resultado = calculate(entrada)
+            print("Resultado:", resultado, "\n")
+        except Exception as e:
+            print("Error:", e, "\n")
